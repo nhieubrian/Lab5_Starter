@@ -8,6 +8,8 @@ var vol;
 var button;
 var horn;
 var jsConfetti;
+var volLevel;
+var value;
 
 function init() {
   selectHorn = document.getElementById('horn-select')
@@ -31,8 +33,8 @@ if(selectHorn){
 vol = document.getElementById("volume")
 if(vol){
   vol.addEventListener('input', (event) => {
-    var value = event.target.value;
-    let volLevel = audioHorn[0];
+    value = event.target.value;
+    volLevel = audioHorn[0];
     volLevel.volume = value / 100;
     if(value == 0){
       images[1].setAttribute("src", "assets/icons/volume-level-0.svg")
@@ -52,7 +54,7 @@ if(vol){
 button = document.querySelector('button');
 if(button){
   button.addEventListener('click', (event) => {
-    if(horn == 'party-horn'){
+    if(horn == 'party-horn' && value != 0){
       jsConfetti.addConfetti();
     }
     let play = audioHorn[0];
